@@ -58,18 +58,13 @@ docker-compose ps
 
 Un cop els contenidors estiguin en estat `Up`, pots accedir a l'emissió de diverses maneres:
 
-* 
-**Interfície Web**: Accedeix a `http://localhost:8000` per veure l'estat del servidor i els punts de muntatge.
+* **Interfície Web**: Accedeix a `http://localhost:8000` per veure l'estat del servidor i els punts de muntatge.
 
 
-* 
-**Reproducció Directa**: Utilitza l'URL del teu punt de muntatge (ex: `http://localhost:8000/radio-NOMCOGNOM.mp3`) al navegador o a un reproductor com **VLC**.
+* **Reproducció Directa**: Utilitza l'URL del teu punt de muntatge (ex: `http://localhost:8000/radio-NOMCOGNOM.mp3`) al navegador o a un reproductor com **VLC**.
 
 
-* 
-**Administració**: Gestiona les fonts i oients a `http://localhost:8000/admin/` amb l'usuari `admin`.
-
-
+* **Administració**: Gestiona les fonts i oients a `http://localhost:8000/admin/` amb l'usuari `admin`.
 
 ## 📊 Punts de Muntatge Configurats
 
@@ -81,17 +76,11 @@ El projecte inclou suport per a diferents qualitats i formats:
 
 ## 🛠️ Resolució de Problemes
 
-* 
-**Port ocupat**: Si el port 8000 està en ús, pots canviar-lo al `docker-compose.yml` (ex: `"8001:8000"`).
+* **Port ocupat**: Si el port 8000 està en ús, pots canviar-lo al `docker-compose.yml` (ex: `"8001:8000"`).
+* **Error d'autenticació**: Revisa que la `source-password` al fitxer `icecast.xml` sigui idèntica a la definida a la comanda del streamer al `docker-compose.yml`.
 
 
-* 
-**Error d'autenticació**: Revisa que la `source-password` al fitxer `icecast.xml` sigui idèntica a la definida a la comanda del streamer al `docker-compose.yml`.
-
-
-* 
-**Logs en temps real**: Per veure què està passant internament, executa:
-
+* **Logs en temps real**: Per veure què està passant internament, executa:
 
 ```bash
 docker-compose logs -f
@@ -102,8 +91,6 @@ docker-compose logs -f
 
 ---
 
-**Autor:** [El teu nom i cognom] **Assignatura:** Serveis de Xarxa i Internet 
+**Autor:** [Sergi Gallart Fanlo] **Assignatura:** Serveis de Xarxa i Internet 
 
 ---
-
-Vols que t'ajudi a afegir la secció de l'script d'automatització horària que hem comentat abans en aquest Readme?

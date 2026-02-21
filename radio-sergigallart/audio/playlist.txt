@@ -1,0 +1,3 @@
+file '/audio/canco1.mp3'
+file '/audio/canco2.mp3'
+file '/audio/canco3.mp3'

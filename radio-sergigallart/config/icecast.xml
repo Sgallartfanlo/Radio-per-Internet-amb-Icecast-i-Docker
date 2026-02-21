@@ -1,0 +1,76 @@
+<icecast>
+    <!-- PERSONALITZACIÓ OBLIGATÒRIA: Substitueix sergigallart pel teu nom i cognom -->
+    <location>Institut Sa Palomera, Blanes</location>
+    <admin>admin@sergigallart.local</admin>
+
+    <limits>
+        <clients>50</clients>
+        <sources>3</sources>
+        <queue-size>524288</queue-size>
+        <client-timeout>30</client-timeout>
+        <header-timeout>15</header-timeout>
+        <source-timeout>10</source-timeout>
+        <burst-on-connect>1</burst-on-connect>
+        <burst-size>65535</burst-size>
+    </limits>
+
+    <authentication>
+        <!-- CANVIA aquestes contrasenyes per unes personalitzades -->
+        <source-password>Font_sergigallart_2024</source-password>
+        <relay-password>Relay_sergigallart_2024</relay-password>
+        <admin-user>admin</admin-user>
+        <admin-password>Admin_sergigallart_2024</admin-password>
+    </authentication>
+
+    <hostname>radio-sergigallart.local</hostname>
+
+    <listen-socket>
+        <port>8000</port>
+    </listen-socket>
+
+    <fileserve>1</fileserve>
+
+    <paths>
+        <basedir>/usr/share/icecast2</basedir>
+        <logdir>/var/log/icecast</logdir>
+        <webroot>/usr/share/icecast2/web</webroot>
+        <adminroot>/usr/share/icecast2/admin</adminroot>
+        <alias source="/" destination="/status.xsl"/>
+    </paths>
+
+    <logging>
+        <accesslog>access.log</accesslog>
+        <errorlog>error.log</errorlog>
+        <loglevel>3</loglevel>
+        <logsize>10000</logsize>
+    </logging>
+
+    <!-- Mount point personalitzat -->
+    <mount>
+        <mount-name>/radio-sergigallart.mp3</mount-name>
+        <max-listeners>25</max-listeners>
+        <burst-size>65535</burst-size>
+
+        <!-- Metadades personalitzades -->
+        <stream-name>Ràdio Sergi Gallart</stream-name>
+        <stream-description>Emissora personal de Sergi Gallart</stream-description>
+        <stream-url>http://radio-sergigallart.local:8000</stream-url>
+        <genre>Variada</genre>
+        <public>0</public>
+    </mount>
+        <mount type="normal">
+        <mount-name>/radio-sergigallart-hq.mp3</mount-name>
+        <max-listeners>10</max-listeners>
+        <stream-name>Ràdio Sergi Gallart - Alta Qualitat</stream-name>
+        <stream-description>Stream d'alta qualitat (320 kbps)</stream-description>
+        <genre>Variada HQ</genre>
+    </mount>
+    <mount type="normal">
+        <mount-name>/radio-sergigallart.opus</mount-name>
+        <max-listeners>25</max-listeners>
+        <stream-name>Ràdio sergigallart - Opus</stream-name>
+        <stream-description>Stream optimitzat en format Opus</stream-description>
+        <genre>Variada Opus</genre>
+    </mount>
+
+</icecast>

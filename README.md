@@ -8,12 +8,10 @@ Aquest projecte permet desplegar un servidor de streaming d'àudio personalitzat
 
 Abans de començar, assegura't de tenir instal·lat:
 
-* 
-**Docker Desktop** o **Docker Engine**.
+* **Docker Desktop** o **Docker Engine**.
 
 
-* 
-**Docker Compose**.
+* **Docker Compose**.
 
 
 * Fitxers d'àudio en format **MP3** dins la carpeta `audio/`.

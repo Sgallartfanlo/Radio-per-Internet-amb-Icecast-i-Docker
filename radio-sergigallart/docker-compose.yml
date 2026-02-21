@@ -1,0 +1,101 @@
+version: '3.8'
+
+services:
+  # Servei Icecast
+  icecast-sergigallart:
+    image: moul/icecast:latest
+    container_name: icecast-sergigallart
+
+    ports:
+      - "8000:8000"  # Interfície web i streaming
+
+    volumes:
+      - ./config/icecast.xml:/etc/icecast2/icecast.xml:ro
+      - ./logs:/var/log/icecast
+      - ./audio:/audio:rw
+
+    environment:
+      - TZ=Europe/Madrid
+
+    restart: unless-stopped
+
+    networks:
+      - radio-network
+
+  # Servei Streamer (ffmpeg)
+  streamer-sergigallart-opus:
+    image: linuxserver/ffmpeg:latest
+    container_name: streamer-sergigallart-opus
+
+    volumes:
+      - ./audio:/audio:ro
+
+    command: >
+      -re -stream_loop -1
+      -i /audio/canco1.mp3
+      -codec:a libopus
+      -b:a 96k
+      -content_type audio/ogg
+      -f opus
+      icecast://source:Font_sergigallart_2024@icecast-sergigallart:8000/radio-sergigallart.opus
+
+    depends_on:
+      - icecast-sergigallart
+
+    restart: unless-stopped
+
+    networks:
+      - radio-network
+  streamer-sergigallart-hq:
+    image: linuxserver/ffmpeg:latest
+    container_name: streamer-sergigallart-hq
+    volumes:
+      - ./audio:/audio:ro
+    command: >
+      -re -stream_loop -1
+      -i /audio/canco2.mp3
+      -codec:a libmp3lame
+      -b:a 320k
+      -content_type audio/mpeg
+      -f mp3
+      icecast://source:Font_sergigallart_2024@icecast-sergigallart:8000/radio-sergigallart-hq.mp3
+    depends_on:
+      - icecast-sergigallart
+    restart: unless-stopped
+    networks:
+      - radio-network
+  streamer-sergigallart:
+    image: linuxserver/ffmpeg:latest
+    container_name: streamer-sergigallart
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/radio-sergigallart.mp3"]
+      interval: 30s
+      retries: 3
+      start_period: 5s
+      timeout: 10s
+
+    volumes:
+      - ./audio:/audio:ro
+
+    command: >
+      -re -stream_loop -1
+      -f concat -safe 0 -i /audio/playlist.txt
+      -codec:a libmp3lame
+      -b:a 128k
+      -content_type audio/mpeg
+      -f mp3
+      -metadata title="Títol dinàmic"
+      -metadata artist="Artista dinàmic"
+      icecast://source:Font_sergigallart_2024@icecast-sergigallart:8000/radio-sergigallart.mp3
+
+    depends_on:
+      - icecast-sergigallart
+
+    restart: unless-stopped
+
+    networks:
+      - radio-network
+
+networks:
+  radio-network:
+    driver: bridge

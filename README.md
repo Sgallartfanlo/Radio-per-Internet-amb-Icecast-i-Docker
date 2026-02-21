@@ -91,6 +91,6 @@ docker-compose logs -f
 
 ---
 
-**Autor:** [Sergi Gallart Fanlo] **Assignatura:** Serveis de Xarxa i Internet 
+**Autor:** Sergi Gallart Fanlo **Assignatura:** Serveis de Xarxa i Internet 
 
 ---

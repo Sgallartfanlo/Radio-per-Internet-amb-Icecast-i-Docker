@@ -1,3 +1,5 @@
+---
+
 # 🎙️ Projecte Ràdio per Internet amb Icecast i Docker
 
 Aquest projecte permet desplegar un servidor de streaming d'àudio personalitzat utilitzant **Icecast** com a servidor de mitjans i **FFmpeg** com a font d'emissió, tot orquestrat amb **Docker Compose**.
@@ -12,7 +14,11 @@ Abans de començar, assegura't de tenir instal·lat:
 
 * 
 **Docker Compose**.
+
+
 * Fitxers d'àudio en format **MP3** dins la carpeta `audio/`.
+
+
 
 ## 🚀 Instal·lació i Posada en Marxa
 
